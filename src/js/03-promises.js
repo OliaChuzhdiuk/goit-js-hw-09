@@ -24,10 +24,10 @@ function callPromiseCreation({ amount, step, delay }) {
   for (let index = 1; index <= amount; index += 1) {
     createPromise(index, calculatedDelay)
       .then(({ position, delay }) => {
-        Notify.success(`Fulfilled promise ${position} in ${delay}ms`);
+        Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
       .catch(({ position, delay }) => {
-        Notify.failure(`Rejected promise ${position} in ${delay}ms`);
+        Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`);
       });
     calculatedDelay += step;
   }
