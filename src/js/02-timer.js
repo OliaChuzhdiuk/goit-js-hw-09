@@ -13,6 +13,7 @@ const options = {
   },
 };
 
+
 const refs = {
   startButton: document.querySelector('[data-start]'),
   inputEl: document.querySelector('#datetime-picker'),
@@ -46,12 +47,20 @@ function onStartClick() {
 }
 
 function calculationStart() {
-  setInterval(() => {
+  const timerId = setInterval(() => {
     const restTime = convertMs(chosenDate - Date.now());
     markupChange(restTime);
+    if (
+      restTime.seconds === 0 &&
+      restTime.minutes === 0 &&
+      restTime.hours === 0 &&
+      restTime.days === 0
+    ) {
+      clearInterval(timerId);
+    }
   }, 1000);
 }
-
+console.log(calculationStart)
 function convertMs(ms) {
   // Number of milliseconds per unit of time
   const second = 1000;
